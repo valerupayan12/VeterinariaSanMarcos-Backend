@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 public class Producto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_producto;
     private String nombre;
     private double precio;

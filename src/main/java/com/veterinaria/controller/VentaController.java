@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.veterinaria.entity.Venta;
 import com.veterinaria.service.VentaService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/ventas")
+@Tag(name = "Venta", description = "Operaciones relacionadas con ventas")
 public class VentaController {
     @Autowired
     private VentaService ventaService;
