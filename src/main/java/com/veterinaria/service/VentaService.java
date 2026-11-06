@@ -1,23 +1,31 @@
+package com.veterinaria.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.veterinaria.entity.Venta;
+import com.veterinaria.repository.VentaRepository;
 
 @Service
-public class UsuarioService {
+public class VentaService {
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private VentaRepository ventaRepository;
 
-    public List<Usuario> getAllUsuarios() {
-        return usuarioRepository.findAll();
+    public List<Venta> getAllVentas() {
+        return ventaRepository.findAll();
     }
 
-    public Usuario getUsuarioById(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
+    public Venta getVentaById(Long id) {
+        return ventaRepository.findById(id).orElse(null);
     }
 
-    public Usuario saveUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public Venta saveVenta(Venta venta) {
+        return ventaRepository.save(venta);
     }
 
-    public void deleteUsuario(Long id) {
-        usuarioRepository.deleteById(id);
+    public void deleteVenta(Long id) {
+        ventaRepository.deleteById(id);
     }
 }

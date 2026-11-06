@@ -1,25 +1,31 @@
+package com.veterinaria.service;
 
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.veterinaria.entity.Mascota;
+import com.veterinaria.repository.MascotaRepository;
 
 @Service
-public class ProductoService {
+public class MascotaService {
     @Autowired
-    private ProductoRepository productoRepository;
+    private MascotaRepository mascotaRepository;
 
-    public List<Producto> getAllProductos() {
-        return productoRepository.findAll();
+    public List<Mascota> getAllMascotas() {
+        return mascotaRepository.findAll();
     }
 
-    public Producto getProductoById(Long id) {
-        return productoRepository.findById(id).orElse(null);
+    public Mascota getMascotaById(Long id) {
+        return mascotaRepository.findById(id).orElse(null);
     }
 
-    public Producto saveProducto(Producto producto) {
-        return productoRepository.save(producto);
+    public Mascota saveMascota(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
-    public void deleteProducto(Long id) {
-        productoRepository.deleteById(id);
+    public void deleteMascota(Long id) {
+        mascotaRepository.deleteById(id);
     }
 }
