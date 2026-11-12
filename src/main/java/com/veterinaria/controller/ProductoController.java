@@ -31,7 +31,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping
-     @Operation(summary = "Listar productos", description = "Obtiene la lista de todos los productos")
+    @Operation(summary = "Listar productos", description = "Obtiene la lista de todos los productos")
     @ApiResponse(responseCode = "200", description = "Lista obtenida exitosamente")
     public List<Producto> getAllProductos() {
         return productoService.getAllProductos();
@@ -48,6 +48,7 @@ public class ProductoController {
     @PostMapping
     @Operation(summary = "Crear producto", description = "Crea un nuevo producto")
     @ApiResponse(responseCode = "201", description = "Producto creado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Nombre es obligatorio")
     public Producto createProducto(@Valid @RequestBody Producto producto) {
         return productoService.saveProducto(producto);
     }
