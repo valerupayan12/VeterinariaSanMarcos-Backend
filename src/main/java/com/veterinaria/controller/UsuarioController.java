@@ -2,6 +2,8 @@ package com.veterinaria.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,12 +45,13 @@ public class UsuarioController {
     @PostMapping
     @Operation(summary = "Crear usuario", description = "Crea un nuevo usuario")
     @ApiResponse(responseCode = "201", description = "Usuario creado exitosamente")
-    public Usuario createUsuario(@RequestBody Usuario usuario) {
+    public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
         return usuarioService.saveUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar usuario", description = "Elimina un usuario específico por su ID")
+    @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
     @ApiResponse(responseCode = "200", description = "Usuario eliminado exitosamente")
     public void deleteUsuario(@PathVariable Long id) {
         usuarioService.deleteUsuario(id);

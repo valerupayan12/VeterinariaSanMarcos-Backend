@@ -2,6 +2,8 @@ package com.veterinaria.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,13 +46,14 @@ public class MascotaController {
     @PostMapping
     @Operation(summary = "Crear mascota", description = "Crea una nueva mascota")
     @ApiResponse(responseCode = "201", description = "Mascota creada exitosamente")
-    public Mascota createMascota(@RequestBody Mascota mascota) {
+    public Mascota createMascota(@Valid @RequestBody Mascota mascota) {
         return mascotaService.saveMascota(mascota);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar mascota", description = "Elimina una mascota específica por su ID")
     @ApiResponse(responseCode = "200", description = "Mascota eliminada exitosamente")
+    @ApiResponse(responseCode = "404", description = "Mascota no encontrada")
     public void deleteMascota(@PathVariable Long id) {
         mascotaService.deleteMascota(id);
     }

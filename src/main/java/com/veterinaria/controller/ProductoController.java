@@ -2,6 +2,8 @@ package com.veterinaria.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,12 +48,13 @@ public class ProductoController {
     @PostMapping
     @Operation(summary = "Crear producto", description = "Crea un nuevo producto")
     @ApiResponse(responseCode = "201", description = "Producto creado exitosamente")
-    public Producto createProducto(@RequestBody Producto producto) {
+    public Producto createProducto(@Valid @RequestBody Producto producto) {
         return productoService.saveProducto(producto);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar producto", description = "Elimina un producto específico por su ID")
+    @ApiResponse(responseCode = "404", description = "Producto no encontrado")
     @ApiResponse(responseCode = "200", description = "Producto eliminado exitosamente")
     public void deleteProducto(@PathVariable Long id) {
         productoService.deleteProducto(id);
