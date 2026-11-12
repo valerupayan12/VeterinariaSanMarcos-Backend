@@ -6,15 +6,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Mascota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "nombre obligatorio")
+    @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
     private String nombre;
+
+    @NotBlank(message = "especie obligatoria")
+    @Size(max = 50, message = "La especie no puede superar los 50 caracteres")
     private String especie;
+
+    @Size(max = 50, message = "La raza no puede superar los 50 caracteres")
     private String raza;
+
+    @Min(value = 0, message = "La edad no puede ser negativa")
     private int edad;
 
 //GET Y SETT

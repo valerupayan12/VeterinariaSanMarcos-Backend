@@ -7,14 +7,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "nombre obligatorio")
+    @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
     private String nombre;
+
+    @NotBlank(message = "email obligatorio")
+    @Email(message = "El email debe tener un formato valido")
+    @Size(max = 150, message = "El email no puede superar los 150 caracteres")
     private String email;
+
+    @Size(max = 20, message = "El telefono no puede superar los 20 caracteres")
     private String telefono;
 
     @ManyToOne

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Venta {
@@ -11,6 +12,8 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @PositiveOrZero(message = "El total no puede ser negativo")
     private double total;
 
     public Venta() {}
