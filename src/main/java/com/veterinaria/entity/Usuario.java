@@ -1,6 +1,7 @@
 // Usuario.java
 package com.veterinaria.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +25,12 @@ public class Usuario {
     @NotBlank(message = "email obligatorio")
     @Email(message = "El email debe tener un formato valido")
     @Size(max = 150, message = "El email no puede superar los 150 caracteres")
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @NotBlank(message = "password obligatorio")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    private String password;
 
     @Size(max = 20, message = "El telefono no puede superar los 20 caracteres")
     private String telefono;
@@ -41,6 +47,8 @@ public class Usuario {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
     public Mascota getMascota() { return mascota; }
