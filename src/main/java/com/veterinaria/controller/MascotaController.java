@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Tag(name = "Mascota", description = "Operaciones relacionadas con mascotas")
 public class MascotaController {
-    private final MascotaService mascotaService;
+    private final MascotaService mascotaService = null;
 
     @GetMapping
     @Operation(summary = "Listar mascotas", description = "Obtiene la lista de todas las mascotas")
