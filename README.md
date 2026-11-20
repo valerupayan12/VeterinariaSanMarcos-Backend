@@ -1,10 +1,10 @@
 
-Swagger: http://localhost:8080/swagger-ui.html
+Swagger: http://localhost:8081/swagger-ui.html
 
-Endpoint usuario: http://localhost:8080/api/usuarios
+Endpoint usuario: http://localhost:8081/api/usuarios
 
-Endpoint productos: http://localhost:8080/api/producto
+Endpoint productos: http://localhost:8081/api/producto
 
-Endpoint ventas: http://localhost:8080/api/ventas
+Endpoint ventas: http://localhost:8081/api/ventas
 
-Endpoint mascotas: http://localhost:8080/api/mascotas
+Endpoint mascotas: http://localhost:8081/api/mascotas

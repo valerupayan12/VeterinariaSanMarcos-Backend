@@ -1,4 +1,4 @@
--- V2__inserta_datos_iniciales.sql
+-- V3__inserta_datos_iniciales.sql
 -- Datos semilla (seed data) para probar la API.
 
 INSERT INTO mascota (nombre, especie, raza, edad) VALUES
