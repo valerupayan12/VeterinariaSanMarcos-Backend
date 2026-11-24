@@ -25,7 +25,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         return User.builder()
                 .username(usuario.getEmail())
                 .password(usuario.getPassword())
-                .roles("USER")
+                .roles(rolSeguro(usuario.getRol()))
                 .build();
+    }
+
+    // Spring espera roles sin el prefijo ROLE_; si el dato viene vacio se asume cliente.
+    private String rolSeguro(String rol) {
+        if (rol == null || rol.isBlank()) {
+            return "CLIENTE";
+        }
+        return rol.trim().toUpperCase();
     }
 }

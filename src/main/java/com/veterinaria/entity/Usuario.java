@@ -1,6 +1,9 @@
 // Usuario.java
 package com.veterinaria.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -30,12 +34,18 @@ public class Usuario {
 
     @NotBlank(message = "password obligatorio")
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Size(max = 20, message = "El telefono no puede superar los 20 caracteres")
     private String telefono;
 
-    @ManyToOne
+    // "admin" o "cliente". El registro publico siempre crea clientes.
+    @Size(max = 20, message = "El rol no puede superar los 20 caracteres")
+    private String rol = "cliente";
+
+    @Valid
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
@@ -51,6 +61,8 @@ public class Usuario {
     public void setPassword(String password) { this.password = password; }
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
+    public String getRol() { return rol; }
+    public void setRol(String rol) { this.rol = rol; }
     public Mascota getMascota() { return mascota; }
     public void setMascota(Mascota mascota) { this.mascota = mascota; }
 }

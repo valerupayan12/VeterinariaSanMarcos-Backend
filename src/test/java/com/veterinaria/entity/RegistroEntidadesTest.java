@@ -52,15 +52,15 @@ class RegistroEntidadesTest {
     void registrarProducto() {
         // ARRANGE (preparar)
         Producto producto = new Producto();
-        producto.setName(faker.commerce().productName());
-        producto.setPrice(faker.number().randomDouble(2, 1000, 50000));
+        producto.setNombre(faker.commerce().productName());
+        producto.setPrecio(faker.number().randomDouble(2, 1000, 50000));
 
         // ACT (ejecutar)
-        double precio = producto.getPrice();
+        double precio = producto.getPrecio();
 
         // ASSERT (verificar)
         assertNotNull(producto);
-        assertNotNull(producto.getName());
+        assertNotNull(producto.getNombre());
         assertTrue(precio > 0);
     }
 

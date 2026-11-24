@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.veterinaria.entity.Mascota;
 import com.veterinaria.entity.Producto;
 import com.veterinaria.service.ProductoService;
 
@@ -25,7 +25,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/api/productos")
 @Tag(name = "Producto", description = "Operaciones relacionadas con productos")
 public class ProductoController {
-
 
     @Autowired
     private ProductoService productoService;
@@ -48,9 +47,18 @@ public class ProductoController {
     @PostMapping
     @Operation(summary = "Crear producto", description = "Crea un nuevo producto")
     @ApiResponse(responseCode = "201", description = "Producto creado exitosamente")
-    @ApiResponse(responseCode = "400", description = "Nombre es obligatorio")
+    @ApiResponse(responseCode = "400", description = "Datos inválidos")
     public Producto createProducto(@Valid @RequestBody Producto producto) {
         return productoService.saveProducto(producto);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualizar producto", description = "Actualiza los datos de un producto existente")
+    @ApiResponse(responseCode = "200", description = "Producto actualizado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Producto no encontrado")
+    @ApiResponse(responseCode = "400", description = "Datos inválidos")
+    public Producto updateProducto(@PathVariable Long id, @Valid @RequestBody Producto producto) {
+        return productoService.updateProducto(id, producto);
     }
 
     @DeleteMapping("/{id}")

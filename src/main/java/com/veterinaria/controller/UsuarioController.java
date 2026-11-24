@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,13 @@ public class UsuarioController {
     @ApiResponse(responseCode = "200", description = "Lista obtenida exitosamente")
     public List<Usuario> getAllUsuarios() {
         return usuarioService.getAllUsuarios();
+    }
+
+    @GetMapping("/perfil")
+    @Operation(summary = "Obtener el perfil del usuario autenticado", description = "Devuelve los datos del usuario dueño del token JWT")
+    @ApiResponse(responseCode = "200", description = "Perfil obtenido exitosamente")
+    public Usuario getPerfil(Authentication authentication) {
+        return usuarioService.getUsuarioByEmail(authentication.getName());
     }
 
     @GetMapping("/{id}")
